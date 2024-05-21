@@ -16,4 +16,8 @@ public class DemoAutowire {
     public String getMyValue() {
         return myValue;
     }
+
+    public void setMyValue(String myValue) {
+        this.myValue = myValue;
+    }
 }
