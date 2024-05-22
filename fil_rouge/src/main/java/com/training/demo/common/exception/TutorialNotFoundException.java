@@ -1,4 +1,4 @@
-package com.training.demo.exception;
+package com.training.demo.common.exception;
 
 public class TutorialNotFoundException extends RuntimeException {
 

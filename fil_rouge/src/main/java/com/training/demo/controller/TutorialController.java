@@ -1,8 +1,8 @@
 package com.training.demo.controller;
 
 
+import com.training.demo.common.dto.CreateTutorial;
 import com.training.demo.entity.Tutorial;
-import com.training.demo.exception.TutorialNotFoundException;
 import com.training.demo.service.TutorialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -45,9 +45,24 @@ public class TutorialController {
     }
 
     @PostMapping("/delete/{idTutorial}")
-    public RedirectView deleteTutorial(@PathVariable("idTutorial") Long idTuto){
-            tutorialService.deleteTutorial(idTuto);
-            return new RedirectView("/tutorials/list", true);
+    public RedirectView deleteTutorial(@PathVariable("idTutorial") Long idTuto) {
+        tutorialService.deleteTutorial(idTuto);
+        return new RedirectView("/tutorials/list", true);
     }
+
+    @GetMapping("/add")
+    public String displayAddForm(Model model) {
+        model.addAttribute("newTuto", new CreateTutorial());
+        return "tutorial-add";
+    }
+
+    @PostMapping("/add")
+    public RedirectView handleFormSubmission(CreateTutorial dto) {
+
+        tutorialService.addTutorial(dto);
+
+        return new RedirectView("/tutorials/list", true);
+    }
+
 
 }

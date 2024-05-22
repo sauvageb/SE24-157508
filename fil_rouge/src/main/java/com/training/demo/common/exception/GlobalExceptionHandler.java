@@ -1,6 +1,5 @@
-package com.training.demo.exception;
+package com.training.demo.common.exception;
 
-import com.training.demo.exception.TutorialNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

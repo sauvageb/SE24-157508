@@ -38,7 +38,7 @@
                                 </form>
 
                             </div>
-                            <small class="text-muted" th:text="${item.createAt}"></small>
+                            <small class="text-muted" th:text="${@timeUtil.timeAgo(item.createAt)}"></small>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Détails du tutoriel</title>
 </head>
 <body>
 
+<div class="py-5 bg-light">
+    <div class="container">
+
+        <div class="row g-3">
+            <div class="col-6 offset-md-3">
+                <h1>Ajout d'un tutoriel</h1>
+                <div class="card shadow-sm">
+
+                    <form class="row g-3"
+                          method="post"
+                          th:action="@{/tutorials/add}"
+                          th:object="${newTuto}"
+                    >
+
+                        <div class="col-md-4">
+                            <label for="title" class="form-label">Titre</label>
+                            <input type="text" class="form-control is-valid" id="title"
+                                   th:field="*{title}" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control is-valid" id="description"
+                                   th:field="*{description}" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="content" class="form-label">Contenu</label>
+                            <textarea class="form-control is-valid" id="content"
+                                      th:field="*{content}" required></textarea>
+
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Ajouter</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 </body>
 </html>
