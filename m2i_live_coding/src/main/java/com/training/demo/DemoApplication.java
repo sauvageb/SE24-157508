@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
-public class Application {
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 
     @Bean
