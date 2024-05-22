@@ -2,14 +2,14 @@ package com.training.demo.service;
 
 import com.training.demo.api.TutorialDto;
 import com.training.demo.common.dto.CreateTutorial;
-import com.training.demo.repository.entity.Tutorial;
 import com.training.demo.common.exception.TutorialNotFoundException;
+import com.training.demo.common.mappeer.TutorialMapper;
 import com.training.demo.repository.TutorialRepository;
+import com.training.demo.repository.entity.Tutorial;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,10 +17,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TutorialService {
 
+    private TutorialMapper tutorialMapper;
     private final TutorialRepository tutorialRepository;
 
-    public List<Tutorial> fetchTutorials() {
-        return (List<Tutorial>) tutorialRepository.findAll();
+    public List<TutorialDto> fetchTutorials() {
+        List<Tutorial> tutorials = (List<Tutorial>) tutorialRepository.findAll();
+        return tutorialMapper.fromEntity(tutorials);
     }
 
     public Optional<Tutorial> fetchTutorial(Long id) {
@@ -30,31 +32,16 @@ public class TutorialService {
     // ACID : Atomicité -> Transaction
     @Transactional
     public void deleteTutorial(Long idTuto) {
-        if(tutorialRepository.existsById(idTuto)){
+        if (tutorialRepository.existsById(idTuto)) {
             tutorialRepository.deleteById(idTuto);
-        }else {
+        } else {
             throw new TutorialNotFoundException(idTuto);
         }
     }
 
     public TutorialDto addTutorial(CreateTutorial dto) {
-        // conversion dto to entity
-        Tutorial newTutorial = Tutorial.builder()
-                .title(dto.getTitle())
-                .description(dto.getDescription())
-                .content(dto.getContent())
-                .createAt(LocalDateTime.now())
-                .build();
-
+        Tutorial newTutorial = tutorialMapper.fromDto(dto);
         Tutorial created = tutorialRepository.save(newTutorial);
-
-        return TutorialDto
-                .builder()
-                .id(created.getId())
-                .title(created.getTitle())
-                .description(created.getDescription())
-                .content(created.getContent())
-                .createAt(created.getCreateAt())
-                .build();
+        return tutorialMapper.fromEntity(created);
     }
 }

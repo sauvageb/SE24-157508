@@ -20,9 +20,13 @@ public class TutorialController {
 
     // GET    -> Récupérer une ressource
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Tutorial> fetchAll() {
-        List<Tutorial> tutorials = tutorialService.fetchTutorials();
-        return tutorials;
+    public ResponseEntity<List<TutorialDto>> fetchAll() {
+
+        List<TutorialDto> tutorials = tutorialService.fetchTutorials();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(tutorials);
     }
 
     // POST   -> Envoyer une ressource
