@@ -23,15 +23,15 @@ public class TimeUtil {
         if (minutes == 0) {
             return "À l'instant";
         } else if (minutes < 60) {
-            return minutes + " minute" + (minutes > 1 ? "s" : "");
+            return minutes + " minute" + (minutes >= 0 ? "s" : "");
         } else if (hours < 24) {
-            return hours + " heure" + (hours > 1 ? "s" : "");
+            return hours + " heure" + (hours >= 1 ? "s" : "");
         } else if (days < 30) {
-            return days + " jour" + (days > 1 ? "s" : "");
+            return days + " jour" + (days >= 1 ? "s" : "");
         } else if (months < 12) {
             return months + " mois";
         } else {
-            return years + " an" + (years > 1 ? "s" : "");
+            return years + " an" + (years >= 1 ? "s" : "");
         }
     }
 
