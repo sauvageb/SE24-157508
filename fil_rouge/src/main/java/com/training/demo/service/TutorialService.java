@@ -1,7 +1,9 @@
 package com.training.demo.service;
 
 import com.training.demo.entity.Tutorial;
+import com.training.demo.exception.TutorialNotFoundException;
 import com.training.demo.repository.TutorialRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,15 @@ public class TutorialService {
 
     public Optional<Tutorial> fetchTutorial(Long id) {
         return tutorialRepository.findById(id);
+    }
+
+    // ACID : Atomicité -> Transaction
+    @Transactional
+    public void deleteTutorial(Long idTuto) {
+        if(tutorialRepository.existsById(idTuto)){
+            tutorialRepository.deleteById(idTuto);
+        }else {
+            throw new TutorialNotFoundException(idTuto);
+        }
     }
 }
