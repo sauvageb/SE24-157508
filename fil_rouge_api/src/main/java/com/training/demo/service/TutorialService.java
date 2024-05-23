@@ -8,9 +8,9 @@ import com.training.demo.repository.TutorialRepository;
 import com.training.demo.repository.UserRepository;
 import com.training.demo.repository.entity.Tutorial;
 import com.training.demo.repository.entity.User;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +42,7 @@ public class TutorialService {
         }
     }
 
+    @Transactional(readOnly = true)
     public TutorialDto addTutorial(CreateTutorial dto) {
         Tutorial newTutorial = tutorialMapper.fromDto(dto);
 
