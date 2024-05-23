@@ -1,6 +1,6 @@
 package com.training.demo;
 
-import com.training.demo.entity.Tutorial;
+import com.training.demo.repository.entity.Tutorial;
 import com.training.demo.repository.TutorialRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package com.training.demo.entity;
+package com.training.demo.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

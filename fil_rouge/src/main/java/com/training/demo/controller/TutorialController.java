@@ -2,7 +2,7 @@ package com.training.demo.controller;
 
 
 import com.training.demo.common.dto.CreateTutorial;
-import com.training.demo.entity.Tutorial;
+import com.training.demo.repository.entity.Tutorial;
 import com.training.demo.service.TutorialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

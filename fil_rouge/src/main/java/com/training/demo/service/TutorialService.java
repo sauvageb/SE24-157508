@@ -1,7 +1,7 @@
 package com.training.demo.service;
 
 import com.training.demo.common.dto.CreateTutorial;
-import com.training.demo.entity.Tutorial;
+import com.training.demo.repository.entity.Tutorial;
 import com.training.demo.common.exception.TutorialNotFoundException;
 import com.training.demo.repository.TutorialRepository;
 import jakarta.transaction.Transactional;
