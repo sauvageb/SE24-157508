@@ -6,25 +6,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name = "tutorials")
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tutorial {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String description;
-    private String content;
-    private LocalDateTime createAt;
+    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
 
-    // Un Tutorial peut être écrit par 1 Auteur
-    @ManyToOne
-    private User author;
+    //Un Auteur peut écrire 0, 1 ou n Tutoriel
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Tutorial> tutorialList;
 }

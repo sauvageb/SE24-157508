@@ -7,4 +7,5 @@ public class CreateTutorial {
     private String title;
     private String description;
     private String content;
+    private Long authorId;
 }

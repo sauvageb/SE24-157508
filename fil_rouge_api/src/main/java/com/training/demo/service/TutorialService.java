@@ -1,11 +1,13 @@
 package com.training.demo.service;
 
-import com.training.demo.api.TutorialDto;
 import com.training.demo.common.dto.CreateTutorial;
+import com.training.demo.common.dto.TutorialDto;
 import com.training.demo.common.exception.TutorialNotFoundException;
-import com.training.demo.common.mappeer.TutorialMapper;
+import com.training.demo.common.mapper.TutorialMapper;
 import com.training.demo.repository.TutorialRepository;
+import com.training.demo.repository.UserRepository;
 import com.training.demo.repository.entity.Tutorial;
+import com.training.demo.repository.entity.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TutorialService {
 
-    private TutorialMapper tutorialMapper;
+    private final TutorialMapper tutorialMapper;
     private final TutorialRepository tutorialRepository;
+    private final UserRepository userRepository;
 
     public List<TutorialDto> fetchTutorials() {
         List<Tutorial> tutorials = (List<Tutorial>) tutorialRepository.findAll();
@@ -41,6 +44,10 @@ public class TutorialService {
 
     public TutorialDto addTutorial(CreateTutorial dto) {
         Tutorial newTutorial = tutorialMapper.fromDto(dto);
+
+        User user = userRepository.findById(dto.getAuthorId()).orElseThrow(() -> new RuntimeException("User not found"));
+        newTutorial.setAuthor(user);
+
         Tutorial created = tutorialRepository.save(newTutorial);
         return tutorialMapper.fromEntity(created);
     }

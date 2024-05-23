@@ -1,7 +1,8 @@
-package com.training.demo.common.mappeer;
+package com.training.demo.common.mapper;
 
-import com.training.demo.api.TutorialDto;
 import com.training.demo.common.dto.CreateTutorial;
+import com.training.demo.common.dto.TutorialDto;
+import com.training.demo.common.dto.UserDto;
 import com.training.demo.repository.entity.Tutorial;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,15 @@ public class TutorialMapper {
     }
 
     public TutorialDto fromEntity(Tutorial created) {
+
+        UserDto userDto = UserDto
+                .builder()
+                .id(created.getAuthor().getId())
+                .email(created.getAuthor().getEmail())
+                .firstName(created.getAuthor().getFirstName())
+                .lastName(created.getAuthor().getLastName())
+                .build();
+
         return TutorialDto
                 .builder()
                 .id(created.getId())
@@ -29,6 +39,7 @@ public class TutorialMapper {
                 .description(created.getDescription())
                 .content(created.getContent())
                 .createAt(created.getCreateAt())
+                .author(userDto)
                 .build();
     }
 

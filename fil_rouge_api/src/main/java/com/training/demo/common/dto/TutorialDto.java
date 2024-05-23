@@ -1,4 +1,4 @@
-package com.training.demo.api;
+package com.training.demo.common.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -13,4 +13,5 @@ public class TutorialDto {
     private String description;
     private String content;
     private LocalDateTime createAt;
+    private UserDto author;
 }

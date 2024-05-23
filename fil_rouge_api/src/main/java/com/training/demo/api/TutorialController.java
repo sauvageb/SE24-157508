@@ -1,7 +1,7 @@
 package com.training.demo.api;
 
 import com.training.demo.common.dto.CreateTutorial;
-import com.training.demo.repository.entity.Tutorial;
+import com.training.demo.common.dto.TutorialDto;
 import com.training.demo.service.TutorialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +18,11 @@ public class TutorialController {
 
     private final TutorialService tutorialService;
 
+    //TODO :
+    // Transactions
+    // Test
+    // Securité (Spring Security)
+
     // GET    -> Récupérer une ressource
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TutorialDto>> fetchAll() {
@@ -30,7 +35,7 @@ public class TutorialController {
     }
 
     // POST   -> Envoyer une ressource
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TutorialDto> createTutorial(@RequestBody CreateTutorial dto) {
 
         TutorialDto createTutorial = tutorialService.addTutorial(dto);

@@ -1,4 +1,4 @@
-package com.training.demo.api;
+package com.training.demo.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
