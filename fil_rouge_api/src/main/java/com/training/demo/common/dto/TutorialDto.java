@@ -1,12 +1,13 @@
 package com.training.demo.common.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TutorialDto {
     private Long id;
     private String title;
