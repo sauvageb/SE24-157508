@@ -24,9 +24,9 @@ public class WebSecurityConfig {
 
     private final AuthJwtTokenFilter authenticationJwtTokenFilter;
 
-
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        System.out.println("AuthenticationManager");
         return authenticationConfiguration.getAuthenticationManager();
     }
 
