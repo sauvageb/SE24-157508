@@ -47,10 +47,9 @@ public class AuthenticationService {
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
-
     public void register(RegisterRequest dto) {
 
-        if(userRepository.findByEmail(dto.getEmail()).isPresent()){
+        if (userRepository.findByEmail(dto.getEmail()).isPresent()) {
             throw new UserAlreadyExistException(dto.getEmail());
         }
 

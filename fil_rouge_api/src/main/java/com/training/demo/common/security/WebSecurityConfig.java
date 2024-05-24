@@ -52,6 +52,7 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests(requests -> {
             requests
                     .requestMatchers("/public/**").permitAll()
+                    .requestMatchers("/api/batch/**").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers(antMatcher(HttpMethod.POST, "/api/tutorials/**")).hasAuthority("ROLE_ADMIN")
                     // all other http queries need to be authenticated
