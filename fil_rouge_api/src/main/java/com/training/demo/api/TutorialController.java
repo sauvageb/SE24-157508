@@ -18,13 +18,6 @@ public class TutorialController {
 
     private final TutorialService tutorialService;
 
-    //TODO :
-    // Securité (Spring Security)
-    // Test de controller
-    // JDBC (Java Database Connectivity) => API de connexion a un SGBD
-    // Logging +1
-    // Batch +4
-
     // GET    -> Récupérer une ressource
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<TutorialDto>> fetchAll() {

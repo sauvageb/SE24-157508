@@ -26,12 +26,11 @@ public class WebSecurityConfig {
 
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        System.out.println("AuthenticationManager");
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -50,7 +49,7 @@ public class WebSecurityConfig {
         // Session Policy Management
         http.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-        http.authorizeHttpRequests(requests-> {
+        http.authorizeHttpRequests(requests -> {
             requests
                     .requestMatchers("/public/**").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
