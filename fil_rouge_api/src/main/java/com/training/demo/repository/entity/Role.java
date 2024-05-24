@@ -6,26 +6,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 @Entity
-@Table(name = "tutorials")
+@Table(name = "roles")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tutorial {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String description;
-    private String content;
-    private LocalDateTime createAt;
 
-    // Un Tutorial peut être écrit par 1 Auteur
-    @ManyToOne
-    private User author;
+    @Enumerated(EnumType.STRING)
+    private RoleEnum roleName;
+
 }

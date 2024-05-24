@@ -33,12 +33,20 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Tutorial> tutorialList;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role_mapping",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roleList;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(
-                new SimpleGrantedAuthority("ROLE_ADMIN"),
-                new SimpleGrantedAuthority("ROLE_USER")
-        );
+        return this.roleList
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
+                .toList();
     }
 
     @Override
