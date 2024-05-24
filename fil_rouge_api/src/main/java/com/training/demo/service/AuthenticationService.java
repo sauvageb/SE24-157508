@@ -22,7 +22,7 @@ public class AuthenticationService {
                 dto.getPassword());
 
         // User Authentification
-        Authentication authentication = authenticationManager.authenticate(usernamePasswordToken);
+        authenticationManager.authenticate(usernamePasswordToken);
 
         // JWT Token generation
         String jwt = jwtService.generateToken(dto.getEmail());

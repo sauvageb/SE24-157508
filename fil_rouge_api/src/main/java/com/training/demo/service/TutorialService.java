@@ -42,7 +42,7 @@ public class TutorialService {
         }
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public TutorialDto addTutorial(CreateTutorial dto) {
         Tutorial newTutorial = tutorialMapper.fromDto(dto);
 

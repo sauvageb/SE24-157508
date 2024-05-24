@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -27,6 +28,11 @@ public class WebSecurityConfig {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
     // Filter security on URLS
@@ -48,7 +54,7 @@ public class WebSecurityConfig {
             requests
                     .requestMatchers("/public/**").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers(antMatcher(HttpMethod.POST, "/api/tutorials/**")).hasAuthority("ADMIN")
+                    .requestMatchers(antMatcher(HttpMethod.POST, "/api/tutorials/**")).hasAuthority("ROLE_ADMIN")
                     // all other http queries need to be authenticated
                     .anyRequest().authenticated();
         });
