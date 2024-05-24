@@ -1,10 +1,7 @@
 package com.training.demo.repository.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,10 +11,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class User implements UserDetails {
 
     @Id
@@ -31,6 +28,7 @@ public class User implements UserDetails {
 
     //Un Auteur peut écrire 0, 1 ou n Tutoriel
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Tutorial> tutorialList;
 
     @ManyToMany(fetch = FetchType.EAGER)

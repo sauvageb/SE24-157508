@@ -10,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -18,10 +19,10 @@ public class JwtService {
     private static final String JWT_SECRET = "passwordpasswordpasswordpasswordpasswordpasswordpasswordpasswordpasswordpasswordpasswordpassword";
     private static final long EXPIRATION_DATE = 864_000_000;
 
-    public String generateToken(String username) {
+    public String generateToken(Map<String, Object> extraClaims, String username) {
         return Jwts
                 .builder()
-                .setClaims(new HashMap<>())
+                .setClaims(extraClaims)
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_DATE))
